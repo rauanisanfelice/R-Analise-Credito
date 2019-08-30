@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  # analise-php-apache:
+  #   build: ./docker
+  #   container_name: "analise-cred-php-apache"
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./app/:/var/www/html:rw
+  #     - ./app/src/:/var/www/html/src:rw
+  #     - ./app/src/bin/:/var/www/html/src/bin:rw
+  #     - ./app/src/img/:/var/www/html/src/img:rw
+  #     - ./app/src/style/:/var/www/html/src/style:rw
+  #     - ./app/R/:/var/www/html/R:rw
+  #   networks:
+  #     - analise-network
+
+  analise-postgre:
+    image: postgres:10
+    container_name: "analise-cred-postgre"
+    environment:
+      - POSTGRES_DB=analise
+      - POSTGRES_USER=analise
+      - POSTGRES_PASSWORD=docker123
+    ports:
+      - 5432:5432
+    volumes:
+      - analise-volume-ubuntu:/var/lib/postgresql/data
+    networks:
+      - analise-network
+
+  analise-pgadmin:
+    image: dpage/pgadmin4
+    container_name: "analise-cred-pgadmin"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "docker123"
+    ports:
+      - 8080:80
+    depends_on:
+      - analise-postgre
+    networks:
+      - analise-network
+
+networks:
+  analise-network:
+    driver: bridge
+
+volumes:
+  analise-volume-ubuntu:

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+
+    <head>
+        <title>Análise de Crédito</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/rauan/R-Analise-Credito/app/src/style/styles.css" />
+        <link rel="icon" type="imagem/png" href="/rauan/R-Analise-Credito/app/src/img/favicon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    </head>
+
+    <body>
+        <!-- MENU -->
+        <div id="menu-superior" onClick="window.location.href=window.location.href">
+            <button type="button" class="btn btn-outline-dark">Refazer teste</button>
+        </div>
+
+        <!-- DESCRITIVO -->
+        <div class="shadow-none p-3 bg-light rounded" id="texto-inicio">
+            <h1><b>Análise de Crédito</b></h1><br>
+            <h6 class="text-secondary"><b>
+                Análise de Crédito é um aplicativo que auxilia o bancário a tomar a decisão de análise de crédito.<br>
+            </b></h6><br>
+        </div>
+
+        <!-- FORMULARIO -->
+        <form class="mx-auto" action="result.php" method="post" style="padding: 20px">
+            
+            <!-- QUESTÃO 01 -->
+            <div class="row">
+                
+                <div class="col-4 form-group shadow-none p-3 mb-5">
+                    <div class="borda">
+                        <label class="text-secondary"><b>Questão 01</b> - Qual é sua renda?</label><br>
+                        <input class="form-check-input" type="number" name="q1" id="resp_renda" placeholder="5000.00" min="1" step="0.01">
+                    </div>
+                </div>
+                
+                <!-- QUESTÃO 02 -->
+                <div class="col-4 form-group shadow-none p-3 mb-5">
+                    <div class="borda">
+                        <label class="text-secondary"><b>Questão 02</b> - Qual sua idade?</label><br>
+                        <input class="form-check-input" type="number" name="q2" id="resp_idade" placeholder="20" min="1">
+                    </div>
+                </div>
+                
+                <!-- QUESTÃO 03 -->
+                <div class="col-4 form-group shadow-none p-3 mb-5">
+                    <div class="borda">
+                        <label class="text-secondary"><b>Questão 03</b> - Possui emprestimo? Insira o valor</label><br>
+                        <input class="form-check-input" type="number" name="q3" id="resp_emprestimo" placeholder="5000.00" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+            <!-- BTN REALIZAR TESTE -->
+            <div><button type="submit" class="btn btn-primary" id="btn-teste">Realizar Análise</button></div>
+
+        </form>
+
+         <!-- BTN VOLTA -->
+         <div id="btn_voltar">
+            <a onclick="topFunction()">
+                <img type="imagem" src="/rauan/R-Analise-Credito/app/src/img/seta_cima.png" style="width: 40px; height: 40px;">
+            </a>
+        </div>
+
+    </body>
+</html>

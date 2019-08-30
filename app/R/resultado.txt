@@ -1,0 +1,9 @@
+$acuracia
+Accuracy 
+   97.18 
+
+$resultado
+2000 
+   1 
+Levels: 0 1
+
