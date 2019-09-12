@@ -58,9 +58,10 @@ Para criar as tabelas e importar os dados execute a Query:
 > ..\R-Analise-Credito\database\create-table.sql
 
 Estrutura da tabale:  
-| Renda | Idade | Emprestimo | Result |
-|:-----:|:-----:|:----------:|:------:|
-|Integer|Integer|  Integer   |Integer |
+
+|Renda|Idade|Emprestimo|Result|
+|:-----:|:-----:|:------:|:------:|
+|Integer|Integer|Integer|Integer|
 
 ## Links;
 
