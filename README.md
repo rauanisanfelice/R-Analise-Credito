@@ -40,8 +40,8 @@ Acesse o link:
 [Banco PgAdmin](http://localhost:8080)
 
 Realize o login:
->User: admin@gmail.com  
->Pass: docker123
+>User: admin  
+>Pass: admin
 
 Clique em: Create > Server
 
@@ -50,8 +50,8 @@ Conecte no Banco com os seguintes parametros:
 Name: #nome desejado#  
 >Host: analise-postgre
 >Port: 5432  
->Db  : analise  
->User: analise  
+>Db  : postgre  
+>User: postgres  
 >Pass: docker123
 
 Para criar as tabelas e importar os dados execute a Query:

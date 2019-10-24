@@ -10,8 +10,10 @@ svm_analise_cred <- function(){
     #install.packages('e1071')
     #install.packages('caret')
     #install.packages('RPostgreSQL')
+    #install.packages('ggplot2')
     
     # CARREGA O PACOTE
+    library(ggplot2)
     library(caTools)
     library(e1071)
     library(caret)
@@ -20,10 +22,10 @@ svm_analise_cred <- function(){
     # CRIA CONEXAO AO BANCO
     pgdrv <- dbDriver(drvName = "PostgreSQL")
     db <-DBI::dbConnect(pgdrv,
-                        dbname="analise",
+                        dbname="postgre",
                         host="localhost",
                         port=5432,
-                        user="analise",
+                        user="postgres",
                         password="docker123")
     base_credit = dbGetQuery(db,"SELECT * FROM analise")
     
@@ -38,6 +40,10 @@ svm_analise_cred <- function(){
     # REMOVE IDADES N/A
     base_credit = base_credit[!is.na(base_credit$idade), ]
     
+    # Substitui idade por faixa etaria
+    base_credit$renda = cut(base_credit$renda, breaks = c(20000,30000,40000,50000,60000,70000), labels = c("20k - 30k", "30k - 40k", "40k - 50k", "50k - 60k", "60k - 70k"), right = TRUE)
+    base_credit$idade = cut(base_credit$idade, breaks = c(0,10,20,30,40,50,60,70,80,90,100), labels = c("0 - 10", "10 - 20", "20 - 30", "30 - 40", "40 - 50", "50 - 60", "60 - 70", "70 - 80", "80 - 90", "90 - 100"), right = TRUE)
+    base_credit$emprestimo = cut(base_credit$emprestimo, breaks = c(0,20000,40000,60000,80000,100000,120000,140000,160000), labels = c("0 - 20k", "20k - 40k", "40k - 60k", "60k - 80k", "80k - 1m", "1,0m - 1,2m", "1,2m - 1,4m", "1,4m - 1,6m"), right = TRUE)
     
     ##################################################################
     # CRIA BACKUP
@@ -111,4 +117,4 @@ svm_analise_cred <- function(){
     return(retorno)
 }
 
-svm_analise_cred()
+unlist(svm_analise_cred())

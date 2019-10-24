@@ -1,1 +1,1 @@
-Rscript.exe C:\Users\rishida\Documents\Github_Rauan\rauan\R-Analise-Credito\app\R\Analise_Credito_SVM.R > C:\Users\rishida\Documents\Github_Rauan\rauan\R-Analise-Credito\app\R\resultado.txt
+Rscript.exe C:\Users\Rauan\Documents\Github_Rauan\R-Analise-Credito\app\R\Analise_Credito_SVM.R  >  C:\Users\Rauan\Documents\Github_Rauan\R-Analise-Credito\app\R\resultado.txt
