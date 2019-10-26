@@ -22,10 +22,10 @@ svm_analise_cred <- function(){
     # CRIA CONEXAO AO BANCO
     pgdrv <- dbDriver(drvName = "PostgreSQL")
     db <-DBI::dbConnect(pgdrv,
-                        dbname="postgre",
+                        dbname="postgres",
                         host="localhost",
                         port=5432,
-                        user="postgres",
+                        user="postgre",
                         password="docker123")
     base_credit = dbGetQuery(db,"SELECT * FROM analise")
     
@@ -117,4 +117,4 @@ svm_analise_cred <- function(){
     return(retorno)
 }
 
-unlist(svm_analise_cred())
+svm_analise_cred()

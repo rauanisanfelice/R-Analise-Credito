@@ -1,1 +1,0 @@
-Rscript.exe C:\Users\Rauan\Documents\Github_Rauan\R-Analise-Credito\app\R\Analise_Credito_SVM.R  >  C:\Users\Rauan\Documents\Github_Rauan\R-Analise-Credito\app\R\resultado.txt

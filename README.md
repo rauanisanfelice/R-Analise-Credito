@@ -50,8 +50,8 @@ Conecte no Banco com os seguintes parametros:
 Name: #nome desejado#  
 >Host: analise-postgre
 >Port: 5432  
->Db  : postgre  
->User: postgres  
+>DB  : postgres  
+>User: postgre  
 >Pass: docker123
 
 Para criar as tabelas e importar os dados execute a Query:
