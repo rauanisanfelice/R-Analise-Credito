@@ -66,7 +66,7 @@ svm_analise_cred <- function(){
     
     ##################################################################
     # REDUZIR A BASE
-    # DIVIDE A BASE EM 50% QUE TEM RESULTADOS
+    # DIVIDE A BASE EM 40% QUE TEM RESULTADOS
     divisao_00 = sample.split(base_processed_sem[base_processed_sem$resultado == 0 ,], SplitRatio = 0.4)
     
     # SEPARA A BASE TREINO EM UM SUB CONJUNTO(SUBSET) EM TUDO QUE FOI MARCADO COM TRUE NA DIVISAO
