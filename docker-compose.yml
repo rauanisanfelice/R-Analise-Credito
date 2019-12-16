@@ -1,51 +1,60 @@
 version: "3"
 
 services:
-  analise-php-apache:
-    build: ./docker
-    container_name: "analise-cred-php-apache"
-    ports:
-      - 80:80
-    volumes:
-      - ./app/:/var/www/html:rw
-      - ./app/src/:/var/www/html/src:rw
-      - ./app/src/bin/:/var/www/html/src/bin:rw
-      - ./app/src/img/:/var/www/html/src/img:rw
-      - ./app/src/style/:/var/www/html/src/style:rw
-      - ./app/R/:/var/www/html/R:rw
-    networks:
-      - analise-network
+    analise-php-apache:
+        build: ./docker
+        container_name: "R-ANALISE-CRED-PHP-APACHE"
+        ports:
+            - 80:80
+        volumes:
+            - ./app/:/var/www/html:rw
+            - ./app/src/:/var/www/html/src:rw
+            - ./app/src/bin/:/var/www/html/src/bin:rw
+            - ./app/src/img/:/var/www/html/src/img:rw
+            - ./app/src/style/:/var/www/html/src/style:rw
+            - ./app/R/:/var/www/html/R:rw
+        networks:
+            - analise-network
 
-  analise-postgre:
-    image: postgres:10
-    container_name: "analise-cred-postgre"
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgre
-      - POSTGRES_PASSWORD=docker123
-    ports:
-      - 5432:5432
-    volumes:
-      - analise-volume-ubuntu:/var/lib/postgresql/data
-    networks:
-      - analise-network
+    analise-postgre:
+        image: postgres:12
+        container_name: "R-ANALISE-CRED-POSTGRE"
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgre
+            - POSTGRES_PASSWORD=docker123
+        ports:
+            - 5432:5432
+        volumes:
+            - volume-potgre-r-analise-cred:/var/lib/postgresql:rw
+            - volume-postgre-data-r-analise-cred:/var/lib/postgresql/data:rw
+        networks:
+            - analise-network
 
-  analise-pgadmin:
-    image: dpage/pgadmin4
-    container_name: "analise-cred-pgadmin"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "admin"
-      PGADMIN_DEFAULT_PASSWORD: "admin"
-    ports:
-      - 8080:80
-    depends_on:
-      - analise-postgre
-    networks:
-      - analise-network
+    analise-pgadmin:
+        image: dpage/pgadmin4:4.16
+        container_name: "R-ANALISE-CRED-PGADMIN"
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "admin"
+            PGADMIN_DEFAULT_PASSWORD: "admin"
+        ports:
+            - 8080:80
+        volumes:
+            - volume-pgadmin-analise-cred:/pgadmin4:rw
+            - volume-pgadmin-analise-cred-lib:/var/lib/pgadmin:rw
+            - volume-pgadmin-analise-cred-certs:/certs:rw
+        depends_on:
+            - analise-postgre
+        networks:
+            - analise-network
 
 networks:
-  analise-network:
-    driver: bridge
+    analise-network:
+        driver: bridge
 
 volumes:
-  analise-volume-ubuntu:
+    volume-potgre-r-analise-cred:
+    volume-postgre-data-r-analise-cred:
+    volume-pgadmin-r-analise-cred:
+    volume-pgadmin-r-analise-cred-lib:
+    volume-pgadmin-r-analise-cred-certs:
